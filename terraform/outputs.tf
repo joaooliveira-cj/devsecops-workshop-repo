@@ -18,12 +18,14 @@ output "database_name" {
   value       = google_sql_database_instance.insecure_db.name
 }
 
-output "database_public_ip" {
-  description = "Public IP of the database instance"
-  value       = google_sql_database_instance.insecure_db.public_ip_address
+# FIXED: Removed database_public_ip output as DB no longer has public IP
+output "database_connection_name" {
+  description = "Connection name for the database instance (use with Cloud SQL Proxy)"
+  value       = google_sql_database_instance.insecure_db.connection_name
 }
 
 output "service_account_email" {
   description = "Email of the service account"
   value       = google_service_account.insecure_sa.email
+  sensitive   = true
 }

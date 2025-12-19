@@ -1,4 +1,4 @@
-# INSECURE - Workshop demonstration only
+# SECURE - Workshop demonstration - secure version
 
 variable "project_id" {
   description = "GCP Project ID"
@@ -24,18 +24,22 @@ variable "machine_type" {
   default     = "e2-medium"
 }
 
-# VULN-7: Hardcoded password
+# FIXED: Password removed from code
 variable "db_password" {
-  description = "Database root password"
+  description = "Database root password (provide via GitHub Secrets or Secret Manager)"
   type        = string
-  default     = "admin123" # INSECURE
-  sensitive   = false      # INSECURE
+  sensitive   = true
+  # No default value - must be provided securely via:
+  # - GitHub Secrets in CI/CD
+  # - GCP Secret Manager for runtime
 }
 
-# VULN-8: Hardcoded API key
+# FIXED: API key removed from code
 variable "api_key" {
-  description = "API Key for external service"
+  description = "API Key for external service (provide via GitHub Secrets or Secret Manager)"
   type        = string
-  default     = "AIzaSyDXxxxxxxxxxxxxxxxxxxxxxxxxxx" # INSECURE
-  sensitive   = false                                # INSECURE
+  sensitive   = true
+  # No default value - must be provided securely via:
+  # - GitHub Secrets in CI/CD
+  # - GCP Secret Manager for runtime
 }

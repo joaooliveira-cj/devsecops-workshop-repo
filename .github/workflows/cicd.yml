@@ -51,7 +51,7 @@ jobs:
           scan-type: 'config'
           scan-ref: 'terraform'
           severity: 'CRITICAL,HIGH,MEDIUM,LOW'
-          exit-code: '0'
+          exit-code: '1'
           format: 'sarif'
           output: 'trivy-results.sarif'
 
@@ -67,7 +67,7 @@ jobs:
         with:
           directory: terraform
           framework: terraform
-          soft_fail: true
+          soft_fail: false
           output_format: sarif
           output_file_path: checkov-results.sarif
       
